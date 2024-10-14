@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://ddcpe6s55fgss"]
+
+[ext_resource type="Script" path="res://navdi4/main/navdimain.gd" id="1_bg03g"]
+[ext_resource type="Texture2D" uid="uid://6nshf8524yyx" path="res://icon.png" id="2_wdlrg"]
+[ext_resource type="Script" path="res://dreamlands/14-statue-garden/^play-statue.gd" id="3_3nl1g"]
+[ext_resource type="Script" path="res://navdi4/dream/LiveDream.gd" id="3_vd67c"]
+[ext_resource type="Script" path="res://navdi4/main/navdicart.gd" id="4_je00c"]
+[ext_resource type="Texture2D" uid="uid://dnjf3qsd5w4tp" path="res://dreamlands/14-statue-garden/statue-forest.png" id="5_3s8f5"]
+
+[sub_resource type="Resource" id="Resource_vktnv"]
+script = ExtResource("4_je00c")
+diary_written = true
+diary_keywords = Array[String](["statue", "forest", "garden"])
+name = "statue-forest-garden"
+play_script = ExtResource("3_3nl1g")
+game_size = Vector2i(180, 200)
+view_scale = Vector2i(2, 2)
+bg_transparent = false
+bg_colour = Color(0.264649, 0.595441, 0.408146, 1)
+pixelated = true
+prepend_date = true
+birth_year = 2024
+birth_month = "October"
+birth_day = 14
+sheet_src = ExtResource("5_3s8f5")
+tile_size = Vector2i(10, 10)
+icon_idx = 9
+exits = Array[String]([""])
+songlink = ""
+
+[node name="[[ statue-forest-garden ]]" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_bg03g")
+icon_preview = ExtResource("2_wdlrg")
+cart = SubResource("Resource_vktnv")
+gcap_max_dur = 999
+
+[node name="LiveDream" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
+script = ExtResource("3_vd67c")
+camera = NodePath("dreamcamera")
+
+[node name="dreamcamera" type="Camera2D" parent="LiveDream"]
+
+[node name="playerparent" type="Node2D" parent="." groups=["PlayerParent"]]
+
+[node name="diary" type="RichTextLabel" parent="."]
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/bold_font_size = 10
+bbcode_enabled = true
+text = "[center][b][[ statue-forest-garden ]][/b]
+statue
+forest
+garden"
