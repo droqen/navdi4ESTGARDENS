@@ -32,16 +32,6 @@ position = Vector2(72, 144)
 gravity_scale = 0.0
 script = ExtResource("5_h4yq5")
 
-[node name="headSpr" type="Sprite2D" parent="rmA/player"]
-position = Vector2(0, -6)
-texture = ExtResource("6_fixgx")
-hframes = 10
-vframes = 10
-frame = 10
-script = ExtResource("7_3xd3e")
-sheet = ExtResource("8_63lhu")
-frames = PackedInt32Array(10)
-
 [node name="feetSpr" type="Sprite2D" parent="rmA/player"]
 position = Vector2(0, 4)
 texture = ExtResource("6_fixgx")
@@ -51,6 +41,16 @@ frame = 20
 script = ExtResource("7_3xd3e")
 sheet = ExtResource("8_63lhu")
 frames = PackedInt32Array(20)
+
+[node name="headSpr" type="Sprite2D" parent="rmA/player"]
+position = Vector2(0, -6)
+texture = ExtResource("6_fixgx")
+hframes = 10
+vframes = 10
+frame = 10
+script = ExtResource("7_3xd3e")
+sheet = ExtResource("8_63lhu")
+frames = PackedInt32Array(10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rmA/player"]
 shape = SubResource("CircleShape2D_vgrv4")
