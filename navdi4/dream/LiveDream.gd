@@ -46,18 +46,18 @@ func _physics_process(_delta: float) -> void:
 			match dreamroom.blank_link_behaviour:
 				DreamRoom.BlankLinkBehaviour.WRAP:
 					match travel_dirid:
-						0: player.position.x = dreamroom.edge_margin;
-						1: player.position.y = dreamroom.room_size.y - 1 - dreamroom.edge_margin;
-						2: player.position.x = dreamroom.room_size.x - 1 - dreamroom.edge_margin;
-						3: player.position.y = dreamroom.edge_margin;
+						0: reposition_player(player, HORIZONTAL, dreamroom.edge_margin)
+						1: reposition_player(player,  VERTICAL,  dreamroom.room_size.y - 1 - dreamroom.edge_margin)
+						2: reposition_player(player, HORIZONTAL, dreamroom.room_size.x - 1 - dreamroom.edge_margin)
+						3: reposition_player(player,  VERTICAL,  dreamroom.edge_margin)
 				DreamRoom.BlankLinkBehaviour.VOID:
 					pass # nothing happens
 				DreamRoom.BlankLinkBehaviour.SIDES_BLOCKED:
 					match travel_dirid:
-						2: player.position.x = dreamroom.edge_margin;
-						3: pass # player.position.y = dreamroom.room_size.y - 1 - dreamroom.edge_margin;
-						0: player.position.x = dreamroom.room_size.x - 1 - dreamroom.edge_margin;
-						1: pass # player.position.y = dreamroom.edge_margin;
+						2: reposition_player(player, HORIZONTAL, dreamroom.edge_margin)
+						3: reposition_player(player,  VERTICAL,  dreamroom.room_size.y - 1 - dreamroom.edge_margin)
+						0: reposition_player(player, HORIZONTAL, dreamroom.room_size.x - 1 - dreamroom.edge_margin)
+						1: reposition_player(player,  VERTICAL,  dreamroom.edge_margin)
 				DreamRoom.BlankLinkBehaviour.ESCAPE:
 					var escape_code : String = dreamroom.name
 					set_dreamroom(null)
@@ -69,10 +69,10 @@ func _physics_process(_delta: float) -> void:
 			if newroom: set_dreamroom(newroom)
 			prints("travel from room",dreamroom,"in dir",travel_dirid,"target room=",newroom)
 			match travel_dirid:
-				0: player.position.x = dreamroom.edge_margin;
-				1: player.position.y = dreamroom.room_size.y - 1 - dreamroom.edge_margin;
-				2: player.position.x = dreamroom.room_size.x - 1 - dreamroom.edge_margin;
-				3: player.position.y = dreamroom.edge_margin;
+				0: reposition_player(player, HORIZONTAL, dreamroom.edge_margin)
+				1: reposition_player(player,  VERTICAL,  dreamroom.room_size.y - 1 - dreamroom.edge_margin)
+				2: reposition_player(player, HORIZONTAL, dreamroom.room_size.x - 1 - dreamroom.edge_margin)
+				3: reposition_player(player,  VERTICAL,  dreamroom.edge_margin)
 			var travel_dir : Vector2i
 			match travel_dirid:
 				0: travel_dir = Vector2i( 1, 0)
@@ -141,3 +141,18 @@ static func GetRoom(node_in_tree:Node) -> DreamRoom:
 	return node_in_tree.get_tree().get_first_node_in_group(SOLE_ROOM_GROUP_NAME) as DreamRoom
 static func GetDream(node_in_tree:Node) -> LiveDream:
 	return node_in_tree.get_tree().get_first_node_in_group(SOLE_LIVE_DREAM_NAME) as LiveDream
+
+func reposition_player(player:Node2D, axis:int, axpos:float) -> void:
+	if player is RigidBody2D:
+		var p = player.get_parent()
+		p.remove_child(player)
+		match axis:
+			HORIZONTAL: player.position.x = axpos
+			VERTICAL: player.position.y = axpos
+			_: push_error("LiveDream.reposition_player - bad axis '%d' (expected 0 or 1)" % axis)
+		p.add_child(player)
+	else:
+		match axis:
+			HORIZONTAL: player.position.x = axpos
+			VERTICAL: player.position.y = axpos
+			_: push_error("LiveDream.reposition_player - bad axis '%d' (expected 0 or 1)" % axis)

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Sheet" load_steps=3 format=3 uid="uid://dmrws5agaaff4"]
+
+[ext_resource type="Script" path="res://navdi4/main/navdisheet.gd" id="1_uqxnh"]
+[ext_resource type="Texture2D" uid="uid://drkicbb3lp5s1" path="res://dreamlands/22-sequence/seqrealm.png" id="2_8dnut"]
+
+[resource]
+script = ExtResource("1_uqxnh")
+texture = ExtResource("2_8dnut")
+hframes = 10
+vframes = 10
+defaultframe = 0
