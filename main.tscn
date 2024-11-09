@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://navdi4/main/navdimain.gd" id="1_bg03g"]
 [ext_resource type="Texture2D" uid="uid://6nshf8524yyx" path="res://icon.png" id="2_wdlrg"]
-[ext_resource type="Resource" uid="uid://c0ua6881ob3yb" path="res://dreamlands/22-sequence/cart.tres" id="3_def60"]
 [ext_resource type="Script" path="res://navdi4/dream/LiveDream.gd" id="3_vd67c"]
+[ext_resource type="Resource" uid="uid://d2fy2jm33bu44" path="res://dreamlands/14-statue-garden/cart.tres" id="3_yxto8"]
 
-[node name="[[ sequence realm ]]" type="Node2D"]
+[node name="[[ statue unnamed_lost ]]" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_bg03g")
 icon_preview = ExtResource("2_wdlrg")
-cart = ExtResource("3_def60")
+cart = ExtResource("3_yxto8")
 gcap_max_dur = 999
 
 [node name="LiveDream" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
@@ -28,8 +28,8 @@ offset_bottom = 100.0
 theme_override_font_sizes/normal_font_size = 10
 theme_override_font_sizes/bold_font_size = 10
 bbcode_enabled = true
-text = "[center][b][[ sequence realm ]][/b]
-the place
-thought
-a house
-the tree"
+text = "[center][b][[ statue unnamed/lost ]][/b]
+statue
+unnamed
+lost
+"
